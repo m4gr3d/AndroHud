@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HudView">
+        <attr name="android:enabled" />
+        <attr name="skyColor" format="color|reference" />
+        <attr name="groundColor" format="color|reference" />
+        <attr name="reticleColor" />
+        <attr name="reticleRadius"  />
+        <attr name="android:textSize" />
+        <attr name="android:textColor"  />
+
+        <!-- Yaw related properties -->
+        <attr name="topBarBgColor" format="color|reference" />
+        <attr name="topBarHeight" format="dimension|reference" />
+
+        <!-- Pitch related properties -->
+        <attr name="pitchScaleWidth" />
+
+        <!-- Scroller properties -->
+        <attr name="scrollerHeight" format="reference|dimension" />
+        <attr name="scrollerWidth" format="reference|dimension" />
+        <attr name="scrollerBgColor" format="reference|color"/>
+        <attr name="scrollerArrowHeight" format="reference|dimension" />
+        <attr name="scrollerTicWidth" format="reference|dimension" />
+        <attr name="scrollerTextHorizontalMargin" format="reference|dimension" />
+        <attr name="scrollerTextVerticalMargin" format="reference|dimension" />
+
+    </declare-styleable>
+
+    <!-- Properties for the simple yaw hud widget -->
+    <declare-styleable name="SimpleYaw" >
+        <attr name="android:textSize" />
+
+        <!-- Ticks properties -->
+        <attr name="ticksPosition" format="enum">
+            <enum name="bottom" value="0" />
+            <enum name="top" value="1"/>
+        </attr>
+        <attr name="ticksColor" format="reference|color" />
+
+        <!-- Yaw properties -->
+        <attr name="yaw" format="float" />
+        <attr name="yawNeedleColor" format="reference|color" />
+        <attr name="yawNeedleThickness" format="reference|dimension" />
+    </declare-styleable>
+
+    <!-- Properties for the simple pitch roll hud widget -->
+    <declare-styleable name="SimplePitchRoll" >
+        <attr name="android:textSize" />
+
+        <!-- Pitch properties -->
+        <attr name="pitch" format="float" />
+        <attr name="pitchMin" format="float" />
+        <attr name="pitchMax" format="float" />
+        <attr name="pitchColor" format="reference|color" />
+        <attr name="pitchScaleWidth" format="reference|dimension" />
+        <attr name="pitchScaleMargin" format="reference|dimension" />
+
+        <!-- Roll properties -->
+        <attr name="roll" format="float" />
+        <attr name="rollMin" format="float" />
+        <attr name="rollMax" format="float" />
+        <attr name="rollColor" format="reference|color" />
+
+        <!-- Reticle properties -->
+        <attr name="reticleColor" format="reference|color" />
+        <attr name="reticleRadius" format="reference|dimension" />
+
+    </declare-styleable>
+
+    <!-- Properties for the simple scroller hud widget -->
+    <declare-styleable name="SimpleScroller">
+        <attr name="android:textSize" />
+        <attr name="arrowHeight" format="reference|dimension" />
+        <attr name="ticWidth" format="reference|dimension" />
+        <attr name="textHorizontalMargin" format="reference|dimension" />
+        <attr name="textVerticalMargin" format="reference|dimension" />
+        <attr name="strokeColor" format="reference|color" />
+        <attr name="arrowStrokeColor" format="reference|color" />
+        <attr name="arrowBgColor" format="reference|color" />
+        <attr name="handedness" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="scrollTo" format="float" />
+        <attr name="scrollToRange" format="float" />
+    </declare-styleable>
+</resources>
