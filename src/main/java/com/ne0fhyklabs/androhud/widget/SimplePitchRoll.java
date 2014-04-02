@@ -25,7 +25,7 @@ public class SimplePitchRoll extends View {
     /**
      * Normalized upper bound in degrees for the pitch value.
      */
-    private final static float NORMALIZED_PITCH_UPPER_BOUND = 180;
+    private final static float NORMALIZED_PITCH_UPPER_BOUND = 5;
 
     /**
      * Normalized lower bound in degrees for the pitch value.
@@ -332,9 +332,7 @@ public class SimplePitchRoll extends View {
         //Draw the pitch gauge
         final float halfPitchScaleWidth = mPitchScaleWidth / 2;
         for(int i = (int)NORMALIZED_PITCH_LOWER_BOUND ; i <= (int)
-                NORMALIZED_PITCH_UPPER_BOUND; i+= 5){
-            if(i == 0)
-                continue;
+                NORMALIZED_PITCH_UPPER_BOUND; i++){
 
             float yPos = Math.round(-i* mPitchDegreesPerPixel + pitchYOffset) + halfHeight;
             if(yPos >= upperLimit && yPos <= lowerLimit){
@@ -390,7 +388,8 @@ public class SimplePitchRoll extends View {
         mWidth = width - xPad;
         mHeight = height - yPad;
 
-        mPitchDegreesPerPixel = mHeight / PITCH_DEGREES_TO_SHOW;
+        mPitchDegreesPerPixel = (mHeight - 5 * mReticleRadius) *2 / (NORMALIZED_PITCH_UPPER_BOUND -
+                NORMALIZED_PITCH_LOWER_BOUND);
     }
 
     public float getPitchScaleWidth(){
@@ -472,6 +471,15 @@ public class SimplePitchRoll extends View {
             throw new IllegalArgumentException("Roll value should be within max roll (" +
                     mRollMax + ") and min roll (" + mRollMin + ").");
         }
+    }
+
+    public void setPitchRoll(float pitch, float roll){
+        checkPitchIsWithinRange(pitch);
+        checkRollIsWithinRange(roll);
+
+        mPitch = pitch;
+        mRoll = roll;
+        invalidate();
     }
 
     public float getReticleRadius(){
