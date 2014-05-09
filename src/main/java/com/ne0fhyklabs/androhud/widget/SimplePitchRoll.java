@@ -20,8 +20,7 @@ import static com.ne0fhyklabs.androhud.utils.Constants.DEFAULT_STROKE_WIDTH;
  */
 public class SimplePitchRoll extends View {
 
-    private final static int PITCH_DEGREES_TO_SHOW = 45;
-
+    private final static float DEG_2_RAD = (float)Math.PI / 180f;
     /**
      * Normalized upper bound in degrees for the pitch value.
      */
@@ -282,12 +281,12 @@ public class SimplePitchRoll extends View {
         canvas.drawPath(arrow, mReticlePaint);
 
         //Draw the ticks.
-        for(int i = (int) NORMALIZED_ROLL_LOWER_BOUND; i <= (int) NORMALIZED_ROLL_UPPER_BOUND; i+=
+        for(int i = (int) NORMALIZED_ROLL_LOWER_BOUND; i <= 0; i+=
                 15){
             if(i != 0){
                 //Draw ticks
-                float sinI = (float) Math.sin(i * Math.PI / 180);
-                float cosI = (float) Math.cos(i * Math.PI /180);
+                float sinI = (float) Math.sin(i * DEG_2_RAD);
+                float cosI = (float) Math.cos(i * DEG_2_RAD);
 
                 float dx = sinI * arcHRadius;
                 float dy = cosI * arcVRadius;
@@ -295,6 +294,10 @@ public class SimplePitchRoll extends View {
                 float ey = cosI * (arcVRadius + halfRadius);
 
                 canvas.drawLine(halfWidth + dx, halfHeight -dy, halfWidth + ex, halfHeight -ey,
+                        mRollPaint);
+
+                //Draw symmetric ticks
+                canvas.drawLine(halfWidth - dx, halfHeight - dy, halfWidth - ex, halfHeight - ey,
                         mRollPaint);
             }
         }
@@ -334,7 +337,7 @@ public class SimplePitchRoll extends View {
         for(int i = (int)NORMALIZED_PITCH_LOWER_BOUND ; i <= (int)
                 NORMALIZED_PITCH_UPPER_BOUND; i++){
 
-            float yPos = Math.round(-i* mPitchDegreesPerPixel + pitchYOffset) + halfHeight;
+            float yPos = (-i* mPitchDegreesPerPixel + pitchYOffset) + halfHeight;
             if(yPos >= upperLimit && yPos <= lowerLimit){
                 if(i % 2 == 0){
                     canvas.drawLine(halfWidth - pitchScaleXOffset, yPos,
